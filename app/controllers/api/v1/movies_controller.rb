@@ -43,8 +43,10 @@ class Api::V1::MoviesController < ApplicationController
         movies = movies.where(release_year: params[:year]) if params[:year].present?
         movies = movies.where(listed_in: params[:genre]) if params[:genre].present?
         movies = movies.where(country: params[:country]) if params[:country].present?
+
+        paginated_movies = movies.page(params[:page]).per(10)
         
-        render json: movies.map { |movie| format_movie(movie) }
+        render json: paginated_movies.map { |movie| format_movie(movie) }
     end
 
     private
