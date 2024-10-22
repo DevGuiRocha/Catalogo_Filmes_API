@@ -10,21 +10,24 @@ class Api::V1::MoviesController < ApplicationController
         end
         
         begin
-            CSV.foreach(file.path, headers: true, liberal_parsing: true) do |row|
+            CSV.foreach(file.path, headers: true, col_sep: ';', liberal_parsing: true) do |row|
                 movie_params = {
-                    show_id: row['show_id'],
-                    type: row['type'],
-                    title: row['title'],
-                    director: row['director'],
-                    cast: row['cast'],
-                    country: row['country'],
-                    date_added: row['date_added'],
-                    release_year: row['release_year'],
-                    rating: row['rating'],
-                    duration: row['duration'],
-                    listed_in: row['listed_in'],
-                    description: row['description']
+                    show_id: row['show_id']&.strip,
+                    type: row['type']&.strip,
+                    title: row['title']&.strip,
+                    director: row['director']&.strip,
+                    cast: row['cast']&.strip,
+                    country: row['country']&.strip,
+                    date_added: row['date_added']&.strip,
+                    release_year: row['release_year']&.strip,
+                    rating: row['rating']&.strip,
+                    duration: row['duration']&.strip,
+                    listed_in: row['listed_in']&.strip,
+                    description: row['description']&.strip
                 }
+
+                Rails.logger.info("Linha do CSV: #{row.to_hash}")
+                Rails.logger.info("show_id: #{movie_params[:show_id]}")
         
                 Movie.find_or_create_by(show_id: movie_params[:show_id]).update(movie_params)
             end
