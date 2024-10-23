@@ -24,6 +24,15 @@ Instale as dependências necessárias para a execução do projeto
   bundle install
 ```
 
+Se necessário, edite o arquivo ```config/database.yml``` para alterar as configurações para seu ambiente local, assim como usuario e senha do PostgreSQL para conexões
+
+Rode os seguintes comandos para que seja criado as bases de desenvolvimento/testes e a criação das tabelas
+
+```bash
+  rails db:create
+  rails db:migrate
+```
+
 Inicie o servidor
 
 ```bash
