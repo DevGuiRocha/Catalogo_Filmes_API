@@ -1,7 +1,7 @@
 
 # API Catálogo de Filmes
 
-Uma API criada para processo seletivo. Esta API possui como principal dois endpois, sendo eles um POST onde é enviado um arquivo CSV com todos os dados necessários dos filmes a serem gravados e o outro um GET onde é selecionado todos os filmes na base de dados.
+Esta API possui como principal dois endpois, sendo eles um POST onde é enviado um arquivo CSV com todos os dados necessários dos filmes a serem gravados e o outro um GET onde é selecionado todos os filmes na base de dados.
 
 
 ## Rodando localmente
